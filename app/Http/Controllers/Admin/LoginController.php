@@ -18,11 +18,17 @@ class LoginController extends AdminController
 			])->first();
 			//对比密码
 			if($user && Crypt::decrypt($user->toArray()['user_pass'])==$request->input('password')){
-				dd('ok');
+				//存入session
+				session(['user'=>$user]);
+				return redirect('admin/index');
 			}
 			return back()->with('msg','用户名或者密码错误!');
 		}
-		dd($_SERVER);
 		return view('admin.login');
     }
+
+	public function logout(){
+		session(['user'=>null]);
+		return redirect('admin/login');
+	}
 }
