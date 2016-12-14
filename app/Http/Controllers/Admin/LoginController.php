@@ -22,7 +22,7 @@ class LoginController extends AdminController
 				session(['user'=>$user]);
 				return redirect('admin/index');
 			}
-			return back()->with('msg','用户名或者密码错误!');
+			return back()->with('msg','用户名或者密码错误!！');
 		}
 		return view('admin.login');
     }
